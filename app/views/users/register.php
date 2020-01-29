@@ -37,7 +37,7 @@ require_once APPROOT.'/views/inc/header.php';
                     </form>
                 </div>
             </div>
-            <!-- /form card register -->
+            <!-- /form card registerr -->
 
         </div>
     </div>
