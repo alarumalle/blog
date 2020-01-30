@@ -13,4 +13,4 @@ define('DB_PASS', '');
 define('DB_NAME', 'blog');
 
 //salasona pikkuse konstant
-define('PASSWORD_LEN', 8);
+define('PASSWORD_LEN', 5);
