@@ -6,7 +6,6 @@
 require_once 'config/constants.php';
 //session
 session_start();
-
 //spl a r (), selle asemel et yhekaupa, v6tame kohe kasutusele k6ik libraries?
 spl_autoload_register(function ($className) {
     require_once 'libraries/'.$className.'.php';
