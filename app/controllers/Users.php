@@ -119,9 +119,16 @@ class Users extends Controller
         $this->view('users/login', $data);
     }
     public function createUserSession($user){
-        $_SERVER['user_id'] = $user->user_id;
-        $_SERVER['user_name'] = $user->user_name;
-        $_SERVER['user_email'] = $user->user_email;
+        $_SESSION['user_id'] = $user->user_id;
+        $_SESSION['user_name'] = $user->user_name;
+        $_SESSION['user_email'] = $user->user_email;
         header('Location: '.URLROOT.'/'.'pages/index');
+    }
+
+    public function logout() {
+        session_unset();
+        session_destroy();
+        //suuname logimisse
+        header('Location: '.URLROOT.'/'.'pages/login');
     }
 }
