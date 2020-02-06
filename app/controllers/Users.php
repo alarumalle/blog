@@ -92,13 +92,18 @@ class Users extends Controller
             if(empty($data['password'])){
                 $data['password_err'] = 'Please enter the password';
             }
-
+//emaili kontroll, kas on olemas
             if(!$this->userModel->findUserByEmail($data['email'])){
                 $data['email_err'] = 'User email is not found';
             }
 
             if(empty($data['email_err']) and empty($data['password_err'])){
-                // ok, log in
+                $loggedInUser = $this->userModel->login($data['email'], $data['password']);
+                if($loggedInUser) {
+                    $this->createUserSession($loggedInUser);
+                } else {
+                    $data['password_err'] = 'Your password is incorrect';
+                }
             } else {
                 echo ('Something went wrong');
             }
@@ -112,5 +117,11 @@ class Users extends Controller
             );
         }
         $this->view('users/login', $data);
+    }
+    public function createUserSession($user){
+        $_SERVER['user_id'] = $user->user_id;
+        $_SERVER['user_name'] = $user->user_name;
+        $_SERVER['user_email'] = $user->user_email;
+        header('Location: '.URLROOT.'/'.'pages/index');
     }
 }
